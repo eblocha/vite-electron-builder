@@ -5,5 +5,7 @@
   "semi": true,
   "tabWidth": 2,
   "useTabs": false,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "printWidth": 120,
+  "jsxSingleQuote": true
 }
