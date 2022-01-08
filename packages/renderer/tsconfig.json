@@ -16,6 +16,9 @@
     "paths": {
       "/@/*": [
         "./src/*"
+      ],
+      "/@shared/*": [
+        "../shared/src/*"
       ]
     },
     "lib": ["ESNext", "dom", "dom.iterable"],
