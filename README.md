@@ -12,6 +12,12 @@ Main changes:
 - Removed the .idea folder, since I only use VSCode
 - Moved to Prettier instead of EditorConfig, couldn't get it to work with VSCode 🙁
 
+Planned Changes:
+
+- Instead of using .d.ts for the preload package, I want to infer the type from an `api` object
+- Set up main process to respond to ipcMain events (such as titlebar events for custom titlebars)
+- Try to get Jest working the the entire project, as it is more mature than vitest
+
 # Original README Below:
 
 [![GitHub issues by-label](https://img.shields.io/github/issues/cawa-93/vite-electron-builder/help%20wanted?label=issues%20need%20help&logo=github)](https://github.com/cawa-93/vite-electron-builder/issues?q=label%3A%22help+wanted%22+is%3Aopen+is%3Aissue)
