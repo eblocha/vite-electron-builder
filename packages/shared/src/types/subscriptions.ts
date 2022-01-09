@@ -1,7 +1,8 @@
 import type { Channels } from './channels';
 
 /** Runs when an event is recieved */
-type Callback<A extends unknown[]> = (...args: A) => void;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Callback<A extends any[]> = (...args: A) => void;
 
 /**
  * Defines the available events that can be subscribed to.

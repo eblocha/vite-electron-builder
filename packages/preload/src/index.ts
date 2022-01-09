@@ -33,6 +33,9 @@ export const api = {
     onUnMaximized: createSubscriber(Channels.UNMAXIMIZED),
     isMaximized: createInvoker(Channels.IS_MAXIMIZED),
   },
+  lib: {
+    sha256sum: createInvoker(Channels.SHA256),
+  },
 };
 
 contextBridge.exposeInMainWorld('main', api);

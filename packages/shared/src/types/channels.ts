@@ -8,4 +8,5 @@ export enum Channels {
   CLOSE = 'close',
   IS_MAXIMIZED = 'is-maximized',
   // Define other ipc channels here
+  SHA256 = 'sha256',
 }
