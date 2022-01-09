@@ -1,9 +1,10 @@
 /* eslint-env node */
 
-import {chrome} from '../../.electron-vendors.cache.json';
-import {join} from 'path';
-import {builtinModules} from 'module';
+import { chrome } from '../../.electron-vendors.cache.json';
+import { join } from 'path';
+import { builtinModules } from 'module';
 import react from '@vitejs/plugin-react';
+import envCompatible from 'vite-plugin-env-compatible';
 
 const PACKAGE_ROOT = __dirname;
 
@@ -19,7 +20,7 @@ const config = {
       '/@/': join(PACKAGE_ROOT, 'src') + '/',
     },
   },
-  plugins: [react()],
+  plugins: [react(), envCompatible()],
   base: '',
   server: {
     fs: {
@@ -32,9 +33,7 @@ const config = {
     outDir: 'dist',
     assetsDir: '.',
     rollupOptions: {
-      external: [
-        ...builtinModules,
-      ],
+      external: [...builtinModules],
     },
     emptyOutDir: true,
     brotliSize: false,

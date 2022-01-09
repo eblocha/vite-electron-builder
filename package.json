@@ -17,7 +17,7 @@
     "test:e2e": "yarn build && vitest run",
     "test:main": "vitest run -r packages/main --passWithNoTests",
     "test:preload": "vitest run -r packages/preload --passWithNoTests",
-    "test:renderer": "vitest run -r packages/renderer --passWithNoTests",
+    "test:renderer": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --config packages/renderer/jest.config.js --passWithNoTests --rootDir packages/renderer",
     "watch": "node scripts/watch.js",
     "lint": "eslint . --ext js,ts,tsx",
     "typecheck:main": "tsc --noEmit -p packages/main/tsconfig.json",
@@ -26,8 +26,12 @@
     "typecheck": "yarn typecheck:main && yarn typecheck:preload && yarn typecheck:renderer"
   },
   "devDependencies": {
+    "@swc/core": "^1.2.127",
+    "@swc/jest": "^0.2.15",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
@@ -44,6 +48,8 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-vue": "8.2.0",
     "happy-dom": "2.25.1",
+    "jest": "^27.4.7",
+    "jest-watch-typeahead": "^1.0.0",
     "nano-staged": "0.5.0",
     "playwright": "1.17.1",
     "react": "^17.0.2",
@@ -51,6 +57,7 @@
     "simple-git-hooks": "2.7.0",
     "typescript": "4.5.4",
     "vite": "2.7.10",
+    "vite-plugin-env-compatible": "^1.1.1",
     "vitest": "^0.0.139"
   },
   "dependencies": {
