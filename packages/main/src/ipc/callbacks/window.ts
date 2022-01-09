@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron';
-import type { WindowAPI, Callbacks } from '/@shared/types';
-import { Channels } from '/@shared/types';
+import type { WindowAPI, Callbacks } from '/@shared';
+import { Channels } from '/@shared';
 
 const callbacks: Callbacks<WindowAPI> = {
   [Channels.MAXIMIZE]: e => {

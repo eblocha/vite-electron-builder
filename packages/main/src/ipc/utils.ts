@@ -1,4 +1,4 @@
-import type { Subscriptions } from '/@shared/types';
+import type { Subscriptions } from '/@shared';
 
 /**
  * Send events to subscribers in a type-safe way

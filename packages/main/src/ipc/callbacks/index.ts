@@ -1,4 +1,4 @@
-import type { Callbacks, CombinedAPI } from '/@shared/types';
+import type { Callbacks, CombinedAPI } from '/@shared';
 import windowSlice from './window';
 import cryptoSlice from './crypto';
 

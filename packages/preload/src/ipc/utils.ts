@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import type { Subscriptions, CombinedAPI, Invoker } from '/@shared/types';
+import type { Subscriptions, CombinedAPI, Invoker } from '/@shared';
 
 /**
  * Expose a function to subscribe to events from the main process

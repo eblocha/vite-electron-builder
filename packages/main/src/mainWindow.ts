@@ -2,7 +2,7 @@ import { BrowserWindow } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
 import { createSender } from './ipc';
-import { Channels } from '/@shared/types';
+import { Channels } from '/@shared';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({

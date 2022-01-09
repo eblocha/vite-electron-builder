@@ -15,12 +15,19 @@
     "baseUrl": ".",
     "paths": {
       "/@/*": ["./src/*"],
-      "/@shared/*": ["../shared/src/*"]
+      "/@shared": ["../shared/src"]
     },
     "lib": ["ESNext", "dom", "dom.iterable"],
     "jsx": "react-jsx"
   },
 
-  "include": ["src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts", "../../types/**/*.d.ts", "../preload/src/index.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "types/**/*.d.ts",
+    "../../types/**/*.d.ts",
+    "../preload/src/index.ts",
+    "./setupTests.ts"
+  ],
   "exclude": ["**/*.spec.ts", "**/*.test.ts", "**/*.spec.tsx", "**/*.test.tsx"]
 }

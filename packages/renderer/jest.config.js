@@ -20,6 +20,8 @@ module.exports = {
   moduleNameMapper: {
     '^(.+)\\?(worker|sharedWorker)(\\&inline)?$': '$1',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '^/@shared/(.*)$': '<rootDir>/../shared/src/$1',
+    '^/@/(.*)$': '<rootDir>/src/$1',
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
 };
