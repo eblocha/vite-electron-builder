@@ -1,6 +1,8 @@
-import {BrowserWindow} from 'electron';
-import {join} from 'path';
-import {URL} from 'url';
+import { BrowserWindow } from 'electron';
+import { join } from 'path';
+import { URL } from 'url';
+import { createSender } from './ipc';
+import { Channels } from '/@shared/types';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -31,10 +33,10 @@ async function createWindow() {
    * Vite dev server for development.
    * `file://../renderer/index.html` for production and test
    */
-  const pageUrl = import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
-    ? import.meta.env.VITE_DEV_SERVER_URL
-    : new URL('../renderer/dist/index.html', 'file://' + __dirname).toString();
-
+  const pageUrl =
+    import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
+      ? import.meta.env.VITE_DEV_SERVER_URL
+      : new URL('../renderer/dist/index.html', 'file://' + __dirname).toString();
 
   await browserWindow.loadURL(pageUrl);
 
@@ -50,6 +52,18 @@ export async function restoreOrCreateWindow() {
   if (window === undefined) {
     window = await createWindow();
   }
+
+  // Ensure we send event notifications to subscribers
+  const notifyMaximized = createSender(window.webContents, Channels.MAXIMIZED);
+  const notifyUnMaximized = createSender(window.webContents, Channels.UNMAXIMIZED);
+
+  window.on('maximize', () => {
+    notifyMaximized();
+  });
+
+  window.on('unmaximize', () => {
+    notifyUnMaximized();
+  });
 
   if (window.isMinimized()) {
     window.restore();
