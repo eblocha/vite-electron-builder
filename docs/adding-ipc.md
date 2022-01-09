@@ -45,3 +45,11 @@ You're ready to send the event!
 
 - Whenever you need the main process to send an event, use the `createSender` function from `packages/main/src/ipc/utils.ts`
   - This takes the webContents to send to and the channel name, and returns a function to fire the event. The function is fully typed for the channel spcified!
+
+## Why this complexity?
+
+As your app grows, you will need more and more callbacks to the main process. In order to ensure type safety, this project re-uses the function signatures for these callbacks for both processes.
+
+This architecture ensures that the correct channel is invoked for each callback by mapping the channel name to the callback itself. Then, we just use `createInvoker` to specify the "structure" of the api to the renderer. It also ensures that every channel will be responded to by the main process, because it collects all the callbacks into a single object, and binds them to `ipcMain` in `packages/main/src/index.ts`.
+
+Without the `createInvoker` utility, you would have no way to ensure that `ipcRenderer.invoke()` returns what you think it does. This architecture ensures that.
