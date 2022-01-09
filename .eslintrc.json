@@ -17,11 +17,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "import"],
-  "ignorePatterns": [
-    "packages/preload/exposedInMainWorld.d.ts",
-    "node_modules/**",
-    "**/dist/**"
-  ],
+  "ignorePatterns": ["packages/preload/exposedInMainWorld.d.ts", "node_modules/**", "**/dist/**"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-var-requires": "off",
@@ -33,7 +29,7 @@
         "zones": [
           { "target": "./shared", "from": "./main" },
           { "target": "./shared", "from": "./renderer" },
-          { "target": "./shared", "from": "./shared" }
+          { "target": "./shared", "from": "./preload" }
         ]
       }
     ],

@@ -38,9 +38,6 @@ const config = {
     emptyOutDir: true,
     brotliSize: false,
   },
-  test: {
-    environment: 'happy-dom',
-  },
 };
 
 export default config;
