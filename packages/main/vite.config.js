@@ -1,9 +1,8 @@
-import {node} from '../../.electron-vendors.cache.json';
-import {join} from 'path';
-import {builtinModules} from 'module';
+import { node } from '../../.electron-vendors.cache.json';
+import { join } from 'path';
+import { builtinModules } from 'module';
 
 const PACKAGE_ROOT = __dirname;
-
 
 /**
  * @type {import('vite').UserConfig}
@@ -15,6 +14,7 @@ const config = {
   envDir: process.cwd(),
   resolve: {
     alias: {
+      '/@shared/': join(PACKAGE_ROOT, '..', 'shared', 'src') + '/',
       '/@/': join(PACKAGE_ROOT, 'src') + '/',
     },
   },
@@ -29,11 +29,7 @@ const config = {
       formats: ['cjs'],
     },
     rollupOptions: {
-      external: [
-        'electron',
-        'electron-devtools-installer',
-        ...builtinModules,
-      ],
+      external: ['electron', 'electron-devtools-installer', ...builtinModules],
       output: {
         entryFileNames: '[name].cjs',
       },

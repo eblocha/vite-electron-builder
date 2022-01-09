@@ -10,32 +10,17 @@
 
     // Don't automatically include anything.
     // Only include `@types` packages that we need to import.
-    "types" : [],
+    "types": [],
 
     "baseUrl": ".",
     "paths": {
-      "/@/*": [
-        "./src/*"
-      ],
-      "/@shared/*": [
-        "../shared/src/*"
-      ]
+      "/@/*": ["./src/*"],
+      "/@shared/*": ["../shared/src/*"]
     },
     "lib": ["ESNext", "dom", "dom.iterable"],
     "jsx": "react-jsx"
   },
 
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "types/**/*.d.ts",
-    "../../types/**/*.d.ts",
-    "../preload/exposedInMainWorld.d.ts"
-  ],
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.spec.tsx",
-    "**/*.test.tsx",
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts", "../../types/**/*.d.ts", "../preload/src/index.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "**/*.spec.tsx", "**/*.test.tsx"]
 }

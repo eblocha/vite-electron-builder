@@ -2,24 +2,10 @@
  * @module preload
  */
 
-import {contextBridge} from 'electron';
-import {sha256sum} from '/@/sha256sum';
-
-/**
- * The "Main World" is the JavaScript context that your main renderer code runs in.
- * By default, the page you load in your renderer executes code in this world.
- *
- * @see https://www.electronjs.org/docs/api/context-bridge
- */
-
-/**
- * After analyzing the `exposeInMainWorld` calls,
- * `packages/preload/exposedInMainWorld.d.ts` file will be generated.
- * It contains all interfaces.
- * `packages/preload/exposedInMainWorld.d.ts` file is required for TS is `renderer`
- *
- * @see https://github.com/cawa-93/dts-for-context-bridge
- */
+import { contextBridge } from 'electron';
+import { createInvoker, createSubscriber } from './ipc';
+import { Channels } from '/@shared/types';
+import { sha256sum } from '/@/sha256sum';
 
 /**
  * Expose Environment versions.
@@ -28,9 +14,33 @@ import {sha256sum} from '/@/sha256sum';
  */
 contextBridge.exposeInMainWorld('versions', process.versions);
 
+const nodeCrypto = { sha256sum };
+
 /**
  * Safe expose node.js API
  * @example
  * window.nodeCrypto('data')
  */
-contextBridge.exposeInMainWorld('nodeCrypto', {sha256sum});
+contextBridge.exposeInMainWorld('nodeCrypto', nodeCrypto);
+
+export const api = {
+  title: {
+    maximize: createInvoker(Channels.MAXIMIZE),
+    minimize: createInvoker(Channels.MINIMIZE),
+    restore: createInvoker(Channels.RESTORE),
+    close: createInvoker(Channels.CLOSE),
+    onMaximized: createSubscriber(Channels.MAXIMIZED),
+    onUnMaximized: createSubscriber(Channels.UNMAXIMIZED),
+    isMaximized: createInvoker(Channels.IS_MAXIMIZED),
+  },
+};
+
+contextBridge.exposeInMainWorld('main', api);
+
+declare global {
+  interface Window {
+    main: typeof api;
+    nodeCrypto: typeof nodeCrypto;
+    versions: typeof process.versions;
+  }
+}
