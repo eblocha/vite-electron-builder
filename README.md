@@ -14,7 +14,6 @@ Main changes:
 
 Planned Changes:
 
-- Instead of using .d.ts for the preload package, I want to infer the type from an `api` object
 - Set up main process to respond to ipcMain events (such as titlebar events for custom titlebars)
 - Try to get Jest working the the entire project, as it is more mature than vitest
 
