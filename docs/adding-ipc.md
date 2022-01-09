@@ -14,11 +14,18 @@ If you need the renderer process to use some API only available to the main proc
    - Export your new module from `api/index.ts`
 
 3. Bind the channels to the IPC api exposed to the renderer
+
    - In `packages/preload/src/index.ts`, add the new module as a new property onto `api`, and assign your channels with `createInvoker`.
+
 4. Implement the callbacks for each new channel
+
    - In `packages/main/src/callbacks`, create a new file for your module (see `callbacks/crpyto` as an example)
      - The callbacks API should be the default export
    - In `callbacks/index.ts`, import your new API slice, and combine it with the existing slices
+
+5. Implement a jest mock for the new API
+
+   - In `packages/renderer/setupTests.ts`, create mock implementations for your new IPC api
 
 Your renderer should now be able to asyncronously call your new channels!
 
@@ -40,6 +47,10 @@ In order to add a new event:
 
    - In `packages/preload/src/index.ts`, assign an object parameter to `createSubscriber(Channels.YOUR_NEW_EVENT_CHANNEL)`
      - This function will return a function to the renderer to unsubscribe itself from the event
+
+4. Implement a jest mock for the new API
+
+   - In `packages/renderer/setupTests.ts`, create mock implementations for your new IPC api
 
 You're ready to send the event!
 
