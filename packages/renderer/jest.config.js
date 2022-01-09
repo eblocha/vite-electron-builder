@@ -18,6 +18,7 @@ module.exports = {
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   resetMocks: true,
   moduleNameMapper: {
+    '^(.+)\\?(worker|sharedWorker)(\\&inline)?$': '$1',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
