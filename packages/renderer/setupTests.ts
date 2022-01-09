@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
 
+const subscriptionMock = () => () => {};
+
 const mockedAPI: typeof window.main = {
   lib: {
     sha256sum: jest.fn(async x => x),
@@ -10,10 +12,12 @@ const mockedAPI: typeof window.main = {
     isMaximized: jest.fn(),
     maximize: jest.fn(),
     minimize: jest.fn(),
-    onMaximized: jest.fn(),
-    onUnMaximized: jest.fn(),
+    onMaximized: jest.fn(subscriptionMock),
+    onUnMaximized: jest.fn(subscriptionMock),
     restore: jest.fn(),
   },
 };
 
-Object.defineProperty(window, 'main', mockedAPI);
+beforeAll(() => {
+  window.main = mockedAPI;
+});

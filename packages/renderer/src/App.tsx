@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import './App.css';
 
 const App = () => {
+  useEffect(() => {
+    window.main.title.maximize();
+  }, []);
+
   return (
     <div className="App" id="app">
       <header className="App-header">
